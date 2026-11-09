@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7edf5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>il tuo posto ♡</title>
+<style>
+:root{--ink:#594b62;--muted:#897b8d;--pink:#f5e5ef;--lilac:#ece9f7;--cream:#fffafc;--rose:#bd86a6;--line:#eadde8}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(160deg,#f8edf4,#f0effa 55%,#f8f1ec);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+main{max-width:620px;margin:auto;padding:env(safe-area-inset-top) 17px calc(28px + env(safe-area-inset-bottom))}
+header{text-align:center;padding:25px 8px 16px} .eyebrow{font-size:11px;letter-spacing:.18em;color:var(--muted)} h1{font-family:Georgia,serif;font-size:35px;font-weight:500;margin:9px 0 5px;color:#92718f} .subtitle{font-size:14px;color:var(--muted);margin:0}
+.moon{font-size:54px;margin:15px auto 5px;filter:drop-shadow(0 4px 8px #d8c3dc)}
+.card{background:#fffdfdce;border:1px solid #ffffffd9;border-radius:23px;padding:18px;margin:12px 0;box-shadow:0 8px 25px #8d719015}
+h2{font-family:Georgia,serif;font-size:22px;font-weight:500;margin:0 0 8px} p{line-height:1.55} .small{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{border:0;border-radius:18px;padding:16px 12px;text-align:left;min-height:108px;color:var(--ink);background:var(--pink);font:inherit;cursor:pointer}.tile:nth-child(2){background:var(--lilac)}.tile:nth-child(3){background:#edf3ed}.tile:nth-child(4){background:#f7efe5}.tile span{display:block;font-size:25px;margin-bottom:8px}.tile b{font-size:14px}.tile small{display:block;color:var(--muted);margin-top:4px}
+button{font:inherit}.primary,.secondary{border:0;border-radius:15px;padding:12px 16px;cursor:pointer}.primary{background:#b982a2;color:white}.secondary{background:#f2e9f2;color:var(--ink)}.back{background:transparent;border:0;color:#94738f;padding:4px 0 13px;cursor:pointer}
+input,textarea,select{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;color:var(--ink);font:inherit;margin:7px 0 12px} textarea{min-height:105px;resize:vertical}
+.view{display:none}.view.active{display:block}.message{background:#f8edf4;border-radius:16px;padding:15px;margin:10px 0;line-height:1.55}
+.breath-wrap{display:flex;justify-content:center;align-items:center;padding:24px 0}.orb{width:155px;height:155px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e6d9f1 65%,#d7c6e5);box-shadow:0 0 0 13px #eee7f4aa;display:flex;align-items:center;justify-content:center;text-align:center;font-family:Georgia,serif;font-size:19px;transition:transform 4s ease-in-out}.orb.grow{transform:scale(1.22)}.orb.shrink{transform:scale(.82)}
+.entry{border-top:1px solid var(--line);padding:12px 0}.entry time{font-size:12px;color:var(--muted)}.entry p{margin:5px 0;white-space:pre-wrap}
+footer{text-align:center;color:#9a8b9b;font-size:11px;padding:17px 8px}
+.notice{font-size:12px;background:#f7f1f7;border-radius:13px;padding:12px;color:#796b7e;line-height:1.5}
+@media(min-width:520px){main{padding-top:25px}.grid{gap:13px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+ <div class="eyebrow">UN PICCOLO RIFUGIO, SEMPRE CON TE</div>
+ <div class="moon" aria-hidden="true">☾ ✦</div>
+ <h1>il tuo posto ♡</h1>
+ <p class="subtitle">Qui puoi lasciare fuori un po' di rumore.</p>
+</header>
+
+<section id="home" class="view active">
+ <div class="card">
+  <h2>Ciao, amore ♡</h2>
+  <p>Qualunque cosa tu stia provando, non devi risolvere tutto adesso. Puoi fermarti, respirare e prenderti un momento.</p>
+  <div class="message" id="homeMessage">«Un passo alla volta. Anche questo momento passerà.»</div>
+  <button class="secondary" onclick="newMessage()">Un altro messaggio ♡</button>
+ </div>
+ <div class="grid">
+  <button class="tile" onclick="show('messages')"><span>💌</span><b>Un messaggio per te</b><small>Parole da rileggere</small></button>
+  <button class="tile" onclick="show('calm')"><span>🌷</span><b>Ritrova la calma</b><small>Un esercizio gentile</small></button>
+  <button class="tile" onclick="show('breath')"><span>🌙</span><b>Respira con me</b><small>Una pausa guidata</small></button>
+  <button class="tile" onclick="show('diary')"><span>📖</span><b>Il mio diario</b><small>Dai spazio alle emozioni</small></button>
+ </div>
+ <div class="notice">Questo spazio è un piccolo supporto, non una terapia. Se l'ansia pesa spesso o interferisce con la vita quotidiana, parlarne con una persona fidata o un professionista può essere utile.</div>
+</section>
+
+<section id="messages" class="view">
+ <button class="back" onclick="show('home')">← Torna alla home</button>
+ <div class="card"><h2>Un messaggio per te 💌</h2><p class="small">Scegli una frase da tenere con te.</p><div class="message" id="messageText">Non devi essere forte ogni minuto. Puoi concederti una pausa.</div><button class="primary" onclick="newMessage()">Leggine un altro</button></div>
+ <div class="card"><h2>Una frase tutta tua</h2><p class="small">Puoi aggiungere qui una frase speciale scritta da te. Resterà su questo dispositivo.</p><textarea id="customMessage" placeholder="Scrivi una frase gentile..."></textarea><button class="secondary" onclick="saveCustom()">Salva la frase</button><p id="customStatus" class="small" aria-live="polite"></p></div>
+</section>
+
+<section id="calm" class="view">
+ <button class="back" onclick="show('home')">← Torna alla home</button>
+ <div class="card"><h2>Ritrova la calma 🌷</h2><p>Prova questo piccolo esercizio per riportare l'attenzione al momento presente. Non c'è un modo giusto o sbagliato.</p>
+ <h3>Guarda lentamente intorno a te</h3>
+ <ol><li>Nota 5 cose che puoi vedere.</li><li>Nota 4 cose che puoi sentire con il tatto.</li><li>Nota 3 suoni che riesci a percepire.</li><li>Nota 2 odori, oppure due sensazioni nell'aria.</li><li>Nota 1 cosa che in questo momento può darti un po' di conforto.</li></ol>
+ <p class="small">Se questo esercizio non ti aiuta, puoi interromperlo e scegliere qualcosa che ti fa sentire più a tuo agio.</p></div>
+</section>
+
+<section id="breath" class="view">
+ <button class="back" onclick="show('home')">← Torna alla home</button>
+ <div class="card"><h2>Respira con me 🌙</h2><p>Segui il ritmo solo se ti è confortevole. Respira in modo naturale, senza forzarti o trattenere il respiro. Puoi fermarti in qualsiasi momento.</p>
+ <div class="breath-wrap"><div class="orb" id="orb">Prenditi<br>una pausa</div></div>
+ <p id="breathInstruction" style="text-align:center">Quando vuoi, inizia con calma.</p>
+ <div style="display:flex;gap:8px;justify-content:center"><button class="primary" id="breathButton" onclick="toggleBreath()">Inizia</button><button class="secondary" onclick="stopBreath()">Ferma</button></div>
+ <p class="small" style="text-align:center">Il ritmo è un suggerimento, non un esercizio da completare.</p></div>
+</section>
+
+<section id="diary" class="view">
+ <button class="back" onclick="show('home')">← Torna alla home</button>
+ <div class="card"><h2>Il mio diario 📖</h2><p class="small">Puoi scrivere liberamente. Le note restano salvate localmente su questo dispositivo.</p>
+ <label for="mood">Come ti senti?</label><select id="mood"><option>Sereno</option><option>Un po' in ansia</option><option>Sopraffatto</option><option>Triste</option><option>Stanco</option><option>Non lo so ancora</option></select>
+ <label for="diaryText">Cosa ti va di annotare?</label><textarea id="diaryText" placeholder="Non serve trovare le parole perfette..."></textarea>
+ <button class="primary" onclick="saveEntry()">Salva nel diario</button><p id="diaryStatus" class="small" aria-live="polite"></p></div>
+ <div class="card"><h2>Le mie note</h2><div id="entries"><p class="small">Le tue note appariranno qui.</p></div><button class="secondary" onclick="clearEntries()">Cancella tutte le note</button></div>
+ <div class="notice">Privacy: il diario è memorizzato nel browser di questo dispositivo. Non è protetto da un account o da una password: evita di salvare informazioni molto sensibili e non usare un dispositivo condiviso.</div>
+</section>
+<footer>Fai piano. Meriti gentilezza, anche da te stesso. ♡</footer>
+</main>
+<script>
+const messages=[
+"Non devi avere tutte le risposte oggi. Un passo alla volta.",
+"Anche se adesso sembra tanto, puoi occuparti solo del prossimo piccolo passo.",
+"Meriti gentilezza, soprattutto nei giorni più complicati.",
+"Fermarti un momento non significa arrenderti.",
+"Non sei definito da una giornata difficile.",
+"Puoi chiedere compagnia o aiuto. Non devi fare tutto da solo.",
+"Lascia che questo momento sia semplicemente un momento. Non devi giudicarti."
+];
+let last=-1, breathTimer=null, breathRunning=false;
+function show(id){stopBreath();document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='diary')renderEntries()}
+function newMessage(){let n;do{n=Math.floor(Math.random()*messages.length)}while(n===last&&messages.length>1);last=n;let s='«'+messages[n]+'»';document.getElementById('homeMessage').textContent=s;document.getElementById('messageText').textContent=s}
+function saveCustom(){let v=document.getElementById('customMessage').value.trim();if(!v)return;try{let a=JSON.parse(localStorage.getItem('mtp_custom')||'[]');a.unshift(v);localStorage.setItem('mtp_custom',JSON.stringify(a.slice(0,20)));document.getElementById('customStatus').textContent='Frase salvata su questo dispositivo ♡';document.getElementById('customMessage').value=''}catch(e){document.getElementById('customStatus').textContent='Impossibile salvare in questo browser.'}}
+function toggleBreath(){if(breathRunning){stopBreath();return}breathRunning=true;document.getElementById('breathButton').textContent='Metti in pausa';let phases=[['Inspira dolcemente',4000,'grow'],['Espira lentamente',5000,'shrink']];let i=0;function step(){if(!breathRunning)return;let p=phases[i];document.getElementById('breathInstruction').textContent=p[0];document.getElementById('orb').className='orb '+p[2];breathTimer=setTimeout(()=>{i=(i+1)%2;step()},p[1])}step()}
+function stopBreath(){breathRunning=false;if(breathTimer)clearTimeout(breathTimer);breathTimer=null;let b=document.getElementById('breathButton');if(b)b.textContent='Inizia';let o=document.getElementById('orb');if(o)o.className='orb';let t=document.getElementById('breathInstruction');if(t)t.textContent='Quando vuoi, inizia con calma.'}
+function getEntries(){try{return JSON.parse(localStorage.getItem('mtp_entries')||'[]')}catch(e){return []}}
+function saveEntry(){let text=document.getElementById('diaryText').value.trim();if(!text){document.getElementById('diaryStatus').textContent='Aggiungi qualche parola prima di salvare.';return}let a=getEntries();a.unshift({mood:document.getElementById('mood').value,text,date:new Date().toLocaleString('it-IT')});try{localStorage.setItem('mtp_entries',JSON.stringify(a));document.getElementById('diaryText').value='';document.getElementById('diaryStatus').textContent='Nota salvata ♡';renderEntries()}catch(e){document.getElementById('diaryStatus').textContent='Spazio di archiviazione non disponibile.'}}
+function renderEntries(){let a=getEntries(),el=document.getElementById('entries');if(!a.length){el.innerHTML='<p class="small">Le tue note appariranno qui.</p>';return}el.replaceChildren();a.forEach(x=>{let d=document.createElement('div');d.className='entry';let time=document.createElement('time');time.textContent=x.date+' · '+x.mood;let p=document.createElement('p');p.textContent=x.text;d.append(time,p);el.append(d)})}
+function clearEntries(){if(!confirm('Vuoi cancellare tutte le note salvate su questo dispositivo?'))return;localStorage.removeItem('mtp_entries');renderEntries()}
+newMessage();
+</script>
+</body>
+</html>
